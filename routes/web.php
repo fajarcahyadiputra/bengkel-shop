@@ -13,6 +13,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//ENDPOINT ADMIN
+
+//end point home
 Route::get('/', 'HomeController@index');
+//end point user
 Route::resource('/user', 'UserController');
+Route::post('/user/ganti-password', 'UserController@gantiPassword');
+//endpoint barang
+Route::resource('/barang', 'BarangController');
 Route::post('/user/check-email', 'UserController@checkEmail');
+//endpoint kategori barang
+Route::resource('/kategori', 'KategoriController');
+//endpoint transaksi
+Route::resource('/transaksi', 'TransaksiController');
+//endpoint rekening
+Route::resource('/rekening', 'RekeningController');

@@ -5,14 +5,14 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="this is aplikasi akutansi">
+  <meta name="description" content="aplikasi bengkel shop">
   <meta name="author" content="">
   <!--  <link href="img/logo/logo.png" rel="icon"> -->
   <title>@yield('title')</title>
   <!-- jquery -->
   <script src="{{URL::asset('assets/ruangAdmin/vendor/jquery/jquery.min.js')}}"></script>
   <!-- fontawesome -->
-  <link href="{{URL::asset('assets/ruangAdmin/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
+  <link href="{{URL::asset('assets/fontawesome/css/all.min.css')}}" rel="stylesheet" type="text/css">
   <link href="{{URL::asset('assets/ruangAdmin/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
   <!-- chartjs -->
   <script src="{{URL::asset('assets/chart/Chart.js')}}"></script>

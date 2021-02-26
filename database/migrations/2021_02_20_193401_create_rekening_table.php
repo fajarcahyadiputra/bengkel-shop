@@ -18,6 +18,7 @@ class CreateRekeningTable extends Migration
             $table->string('atas_nama');
             $table->string('nomer_rekening');
             $table->string('nama_bank');
+            $table->string('foto');
             $table->timestamps();
         });
     }

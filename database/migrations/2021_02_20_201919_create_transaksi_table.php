@@ -20,11 +20,9 @@ class CreateTransaksiTable extends Migration
             $table->foreignId('rekening_id')->constrained('rekening')->onDelete('cascade');
             $table->string('invoice', 100);
             $table->enum('status', ['proses', 'pending', 'sukses'])->default('pending');
-            $table->string('atas_nama');
-            $table->string('nomer_rekening');
-            $table->decimal('total_tranfer');
+            $table->decimal('total_transfer');
             $table->integer('kode_unik');
-            $table->string('nama_bank');
+            $table->dateTime('batas_pembayaran');
             $table->timestamps();
         });
     }

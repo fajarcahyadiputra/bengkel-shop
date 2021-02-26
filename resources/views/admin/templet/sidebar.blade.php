@@ -2,29 +2,63 @@
   <!-- Sidebar -->
   <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
     <a class="sidebar-brand d-flex align-items-center justify-content-center" style="background-color: skyblue;" href="/">
-      <div class="sidebar-brand-text mx-2 ">PT.KARUNIA INDAMED MANDIRI</div>
+      <div class="sidebar-brand-text mx-2 ">BENGKEL SHOP</div>
     </a>
     <li class="nav-item p-2" style="font-size: 15px">
-      <center><b>Inventory</b></center>
+      <center><b>ADMIN</b></center>
     </li>
     <hr class="sidebar-divider">
-    <li class="nav-item">
-      <a class="nav-link" href="/">
+    <li class="nav-item {{ (request()->is('/')) ? 'active' : '' }}">
+      <a class="nav-link {{ (request()->is('/')) ? 'text-primary' : '' }}" href="/">
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>Dashboard</span></a>
     </li>
 
     <hr class="sidebar-divider">
 
-    <li class="nav-item">
-      <a class="nav-link" href="/user">
-        <i class="fas fa-fw fa-tachometer-alt"></i>
-        <span>Users</span></a>
+    <li class="nav-item {{ (request()->is('user')) ? 'active' : '' }}">
+      <a class="nav-link {{ (request()->is('user')) ? 'text-primary' : '' }}" href="/user">
+        <i class="fas fa-users"></i>
+        <span>Data Pengguna</span></a>
     </li>
 
     <hr class="sidebar-divider">
 
-    <li class="nav-item">
+    <li class="nav-item {{ (request()->is('kategori')) ? 'active' : '' }}">
+      <a class="nav-link {{ (request()->is('kategori')) ? 'text-primary' : '' }}" href="/kategori">
+        <i class="fas fa-sitemap"></i>
+        <span>Kategori Barang</span></a>
+    </li>
+
+    <hr class="sidebar-divider">
+
+    <li class="nav-item {{ (request()->is('barang')) ? 'active' : '' }}">
+      <a class="nav-link {{ (request()->is('barang')) ? 'text-primary' : '' }}" href="/barang">
+        <i class="fas fa-boxes"></i>
+        <span>Data Barang</span></a>
+    </li>
+
+
+    <hr class="sidebar-divider">
+
+    <li class="nav-item {{ (request()->is('rekening')) ? 'active' : '' }}">
+      <a class="nav-link {{ (request()->is('rekening')) ? 'text-primary' : '' }}" href="/rekening">
+        <i class="fas fa-boxes"></i>
+        <span>Data Rekening</span></a>
+    </li>
+
+    <hr class="sidebar-divider">
+
+    <li class="nav-item {{ (request()->is('transaksi')) ? 'active' : '' }}">
+      <a class="nav-link {{ (request()->is('transaksi')) ? 'text-primary' : '' }}" href="/transaksi">
+        <i class="fas fa-shopping-cart"></i>
+        <span>Transaksi</span></a>
+    </li>
+
+
+
+
+    <!-- <li class="nav-item">
       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap" aria-expanded="true" aria-controls="collapseBootstrap">
         <i class="far fa-fw fa-window-maximize"></i>
         <span>Data Barang</span>
@@ -36,7 +70,7 @@
           <a class="collapse-item" href="">Penyesuain Stok</a>
         </div>
       </div>
-    </li>
+    </li> -->
 
     <hr class="sidebar-divider">
 
