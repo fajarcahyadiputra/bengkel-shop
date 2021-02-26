@@ -53,18 +53,45 @@ class RekeningController extends Controller
     }
     public function show($id)
     {
-        $kategori = Kategori::find($id);
-        return response()->json($kategori);
+        $rekening = Rekening::find($id);
+        return response()->json($rekening);
     }
     public function update($id, Request $request)
     {
-        $barang = Kategori::find($id);
+        $rekening = Rekening::find($id);
         $data = $request->except('_token');
-        $barang->fill($data);
-        if ($barang->save()) {
+        $rekening->fill($data);
+        if ($rekening->save()) {
             return response()->json(true);
         } else {
             return response()->json(false);
+        }
+    }
+    public function editFoto(Request $request)
+    {
+        if ($request->hasFile('foto')) {
+            if ($request->file('foto')->isValid()) {
+                $rule = [
+                    'foto' => 'mimes:jpg,png,jpeg,gift|max:2000'
+                ];
+                $validate = validator::make($request->file(), $rule);
+                if ($validate->fails()) {
+                    return response()->json(false);
+                }
+                $fileName = time() . '-' . date('M') . '.' . $request->foto->extension();
+                $request->foto->move(public_path('foto/rekening'), $fileName);
+                $edit = Rekening::where('id', $request->input('id'))->update([
+                    'foto' => $fileName
+                ]);
+                if ($edit) {
+                    unlink(public_path('foto/rekening/' . $request->input('foto_lama')));
+                    return response()->json(true);
+                } else {
+                    return response()->json(false);
+                }
+            } else {
+                return response()->json(false);
+            }
         }
     }
 }

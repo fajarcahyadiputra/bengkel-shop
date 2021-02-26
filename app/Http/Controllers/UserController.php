@@ -10,14 +10,14 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $users = User::query();
-        $role  = $request->query('role');
-        $users->where('role', 'admin');
         if ($request->query('findRole')) {
+            $role  = $request->query('role');
             $users->when($role, function ($query) use ($role) {
                 return $query->where('role', $role);
             });
             return response()->json($users->get());
         }
+        $users->where('role', 'admin');
         $data = $users->get();
         return view('admin.user.index', compact('data'));
     }

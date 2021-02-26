@@ -40,7 +40,10 @@
                             <td>
                                 <button data-id="{{$user->id}}" id="btn-edit" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></button>
                                 <button data-id="{{$user->id}}" id="btn-hapus" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
-                                <button data-id="{{$user->id}}" id="btn-password" class="btn btn-warning btn-sm"><i class="fas fa-key"></i></i></button>
+                                <button data-id="{{$user->id}}" id="btn-password" class="btn btn-warning btn-sm"><i class="fas fa-key"></i></button>
+                                @if($user->role === 'user')
+                                <button data-id="{{$user->id}}" id="btn-alamat" class="btn btn-warning btn-sm"><i class="fas fa-address-card"></i></button>
+                                @endif
                             </td>
                         </tr>
                         @endforeach
@@ -121,7 +124,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Tambah Data</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Edit Password</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -169,10 +172,20 @@
                             <button data-id="${data.id}" id="btn-edit" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></button>
                             <button data-id="${data.id}" id="btn-hapus" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
                             <button data-id="${data.id}" id="btn-password" class="btn btn-warning btn-sm"><i class="fas fa-key"></i></i></button>
+                            ${
+                                data.role === 'user'?
+                                `<button data-id="${data.id}" id="btn-alamat" class="btn btn-warning btn-sm"><i class="fas fa-address-card"></i></button>`
+                                :''
+                            }
                         </td>
                     </tr>
                     `);
             })
+        })
+        //alamat user
+        $(document).on('click', '#btn-alamat', function() {
+            const idUser = $(this).data('id');
+
         })
         //add data
         $(document).on('submit', '#formTambah', function(e) {
@@ -191,6 +204,7 @@
                         type: 'post',
                         success: function(hasil) {
                             if (hasil) {
+                                $('#modalTambah').modal('hide')
                                 Swal.fire(
                                     'sukses',
                                     'sukses menambah data',
@@ -234,13 +248,13 @@
         $(document).on('click', '#btn-hapus', function() {
             const id = $(this).data('id');
             Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
+                title: 'Apakah Kamu Yakin?',
+                text: "Kamu Akan Menghapus Data Ini!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
+                confirmButtonText: 'Ya, Hapus!'
             }).then((result) => {
                 if (result.value) {
                     $.ajax({

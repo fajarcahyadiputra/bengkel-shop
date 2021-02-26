@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Kategori;
-use App\Models\Barang;
 
 class KategoriController extends Controller
 {
@@ -40,10 +39,10 @@ class KategoriController extends Controller
     }
     public function update($id, Request $request)
     {
-        $barang = Kategori::find($id);
+        $kategori = Kategori::find($id);
         $data = $request->except('_token');
-        $barang->fill($data);
-        if ($barang->save()) {
+        $kategori->fill($data);
+        if ($kategori->save()) {
             return response()->json(true);
         } else {
             return response()->json(false);

@@ -15,9 +15,9 @@
                     <thead>
                         <tr>
                             <th>No</th>
+                            <th>Kode Barang</th>
                             <th>nama</th>
                             <th>Kategori</th>
-                            <th>Kode</th>
                             <th>Harga</th>
                             <th>Berat</th>
                             <th>Stok</th>
@@ -28,9 +28,9 @@
                         @foreach($barang as $no=>$br)
                         <tr>
                             <td>{{$no+1}}</td>
+                            <td>{{$br->kode_barang}}</td>
                             <td>{{$br->nama}}</td>
                             <td>{{$br->kategori['nama']}}</td>
-                            <td>{{$br->kode_barang}}</td>
                             <td>Rp.{{number_format($br->harga,0,',','.')}}</td>
                             <td>{{number_format($br->berat,0,',','.')}} GR</td>
                             <td>{{$br->stok}}</td>
@@ -160,6 +160,7 @@
         $(document).on('submit', '#formTambah', function(e) {
             e.preventDefault();
             const data = $(this).serialize();
+
             $.ajax({
                 url: '/barang',
                 data: data,
@@ -167,6 +168,7 @@
                 type: 'post',
                 success: function(hasil) {
                     if (hasil) {
+                        $('#modalTambah').modal('hide')
                         Swal.fire(
                             'sukses',
                             'sukses menambah data',
@@ -188,13 +190,13 @@
         $(document).on('click', '#btn-hapus', function() {
             const id = $(this).data('id');
             Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
+                title: 'Apakah Kamu Yakin?',
+                text: "Kamu Akan Menghapus Data Ini!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
+                confirmButtonText: 'Ya, Hapus!'
             }).then((result) => {
                 if (result.value) {
                     $.ajax({
@@ -298,6 +300,7 @@
                 dataType: 'json',
                 success: function(hasil) {
                     if (hasil) {
+                        $('#modalEdit').modal('hide');
                         Swal.fire(
                             'sukses',
                             'sukses edit data',
@@ -334,7 +337,7 @@
                             <input class="form-control" disabled readonly value="${hasil.nama}">
                         </div>
                         <div class="form-group">
-                            <label for="">Harga</label>
+                            <label for="">Kode Barang</label>
                             <input class="form-control" disabled readonly value="${hasil.kode_barang}">
                         </div>
                         <div class="form-group">

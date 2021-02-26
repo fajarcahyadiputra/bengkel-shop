@@ -123,6 +123,7 @@
                 type: 'post',
                 success: function(hasil) {
                     if (hasil) {
+                        $('#modalTambah').modal('hide')
                         Swal.fire(
                             'sukses',
                             'sukses menambah data',
@@ -144,13 +145,13 @@
         $(document).on('click', '#btn-hapus', function() {
             const id = $(this).data('id');
             Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
+                title: 'Apakah Kamu Yakin?',
+                text: "Kamu Akan Menghapus Data Ini!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
+                confirmButtonText: 'Ya, Hapus!'
             }).then((result) => {
                 if (result.value) {
                     $.ajax({
@@ -222,6 +223,7 @@
                 dataType: 'json',
                 success: function(hasil) {
                     if (hasil) {
+                        $('#modalEdit').modal('hide');
                         Swal.fire(
                             'sukses',
                             'sukses edit data',

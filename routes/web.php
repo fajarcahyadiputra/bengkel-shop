@@ -29,3 +29,4 @@ Route::resource('/kategori', 'KategoriController');
 Route::resource('/transaksi', 'TransaksiController');
 //endpoint rekening
 Route::resource('/rekening', 'RekeningController');
+Route::post('/rekening/edit-foto', 'RekeningController@editFoto');
