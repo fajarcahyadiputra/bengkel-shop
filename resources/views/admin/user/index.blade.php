@@ -42,7 +42,7 @@
                                 <button data-id="{{$user->id}}" id="btn-hapus" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
                                 <button data-id="{{$user->id}}" id="btn-password" class="btn btn-warning btn-sm"><i class="fas fa-key"></i></button>
                                 @if($user->role === 'user')
-                                <button data-id="{{$user->id}}" id="btn-alamat" class="btn btn-warning btn-sm"><i class="fas fa-address-card"></i></button>
+                                <a id="btn-alamat" href="/user/alamat-user/{{$user->id}}" class="btn btn-warning btn-sm"><i class="fas fa-address-card"></i></a>
                                 @endif
                             </td>
                         </tr>
@@ -174,7 +174,7 @@
                             <button data-id="${data.id}" id="btn-password" class="btn btn-warning btn-sm"><i class="fas fa-key"></i></i></button>
                             ${
                                 data.role === 'user'?
-                                `<button data-id="${data.id}" id="btn-alamat" class="btn btn-warning btn-sm"><i class="fas fa-address-card"></i></button>`
+                                `<a  id="btn-alamat" href="/user/alamat-user/${data.id}" class="btn btn-warning btn-sm"><i class="fas fa-address-card"></i></a>`
                                 :''
                             }
                         </td>
@@ -183,10 +183,14 @@
             })
         })
         //alamat user
-        $(document).on('click', '#btn-alamat', function() {
-            const idUser = $(this).data('id');
+        // $(document).on('click', '#btn-alamat', function() {
+        //     const idUser = $(this).data('id');
+        //     fetch(`/user/alamat-user/${idUser}`)
+        //         .then(res => res.json())
+        //         .then(res => {
 
-        })
+        //         });
+        // })
         //add data
         $(document).on('submit', '#formTambah', function(e) {
             e.preventDefault();

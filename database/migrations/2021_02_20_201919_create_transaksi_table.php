@@ -23,6 +23,7 @@ class CreateTransaksiTable extends Migration
             $table->decimal('total_transfer');
             $table->integer('kode_unik');
             $table->dateTime('batas_pembayaran');
+            $table->string('bukti_transfer');
             $table->timestamps();
         });
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\AlamatUser;
 
 class UserController extends Controller
 {
@@ -78,5 +79,11 @@ class UserController extends Controller
         } else {
             return response()->json(false);
         }
+    }
+    public function dataAlamat($id)
+    {
+        $alamat    = AlamatUser::where('users_id', $id)->get();
+        $nama_user = User::find($id);
+        return view('admin.user.alamat_user', compact('alamat', 'nama_user'));
     }
 }

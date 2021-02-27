@@ -75,27 +75,6 @@
     <hr class="sidebar-divider">
 
     <li class="nav-item">
-      <a class="nav-link" href="">
-        <i class="fas fa-tasks"></i>
-        <span>Data Suplier</span></a>
-    </li>
-    <hr class="sidebar-divider">
-
-    <li class="nav-item">
-      <a class="nav-link" href="">
-        <i class="fas fa-tasks"></i>
-        <span>Data Customer</span></a>
-    </li>
-    <hr class="sidebar-divider">
-
-    <li class="nav-item">
-      <a class="nav-link" href="">
-        <i class="fas fa-tasks"></i>
-        <span>Barang Keluar</span></a>
-    </li>
-
-    <hr class="sidebar-divider">
-    <li class="nav-item">
       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap" aria-expanded="true" aria-controls="collapseBootstrap">
         <i class="far fa-fw fa-window-maximize"></i>
         <span>Report</span>

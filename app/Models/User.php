@@ -8,4 +8,8 @@ class User extends Model
 {
     protected $table = 'users';
     protected $fillable = ['nama', 'email', 'password', 'role', 'status_aktif'];
+    public function alamat()
+    {
+        return $this->belongsTo('App\Models\AlamatUser');
+    }
 }

@@ -20,6 +20,7 @@ Route::get('/', 'HomeController@index');
 //end point user
 Route::resource('/user', 'UserController');
 Route::post('/user/ganti-password', 'UserController@gantiPassword');
+Route::get('/user/alamat-user/{id}', 'UserController@dataAlamat');
 //endpoint barang
 Route::resource('/barang', 'BarangController');
 Route::post('/user/check-email', 'UserController@checkEmail');
