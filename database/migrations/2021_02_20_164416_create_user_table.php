@@ -20,6 +20,7 @@ class CreateUserTable extends Migration
             $table->string('password');
             $table->enum('role', ['user', 'admin'])->default('user');
             $table->enum('status_aktif', ['aktif', 'tidak'])->default('aktif');
+            $table->string('avatar', 100);
             $table->timestamps();
         });
     }
