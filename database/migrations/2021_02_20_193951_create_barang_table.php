@@ -19,7 +19,7 @@ class CreateBarangTable extends Migration
             $table->string('nama');
             $table->string('kode_barang');
             $table->enum('status_aktif', ['aktif', 'tidak'])->default('aktif');
-            $table->decimal('harga');
+            $table->bigInteger('harga');
             $table->text('deskripsi');
             $table->enum('kondisi', ['bekas', 'baru'])->default('baru');
             $table->integer('berat');

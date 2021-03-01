@@ -22,7 +22,6 @@
                             <th>Kabupaten</th>
                             <th>NO HP</th>
                             <th>Kode Pos</th>
-                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody id="table-user">
@@ -34,10 +33,6 @@
                             <td>{{$dt->kabupaten}}</td>
                             <td>{{$dt->nomer_hp}}</td>
                             <td>{{$dt->kode_pos}}</td>
-                            <td>
-                                <button data-id="{{$dt->id}}" id="btn-edit" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></button>
-                                <button data-id="{{$dt->id}}" id="btn-hapus" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
-                            </td>
                         </tr>
                         @endforeach
                     </tbody>

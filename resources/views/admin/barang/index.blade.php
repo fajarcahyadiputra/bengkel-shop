@@ -38,6 +38,7 @@
                                 <button data-id="{{$br->id}}" id="btn-edit" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></button>
                                 <button data-id="{{$br->id}}" id="btn-hapus" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
                                 <button data-id="{{$br->id}}" id="btn-detail" class="btn btn-warning btn-sm"><i class="fa fa-info"></i></button>
+                                <a href="/barang/foto-barang/{{$br->id}}" class="btn btn-info btn-sm"><i class="fas fa-images"></i></a>
                             </td>
                         </tr>
                         @endforeach
@@ -98,7 +99,7 @@
                         <input type="number" name="berat" id="berat" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="deskripsi">Deskripsi <span><small class="form-text text-muted d-inline">(*gram)</small></span></label>
+                        <label for="deskripsi">Deskripsi</label>
                         <textarea name="deskripsi" class="form-control" id="deskripsi" cols="30" rows="3"></textarea>
                     </div>
                 </div>
@@ -168,7 +169,7 @@
                 type: 'post',
                 success: function(hasil) {
                     if (hasil) {
-                        $('#modalTambah').modal('hide')
+                        $('#modalTambahData').modal('hide')
                         Swal.fire(
                             'sukses',
                             'sukses menambah data',

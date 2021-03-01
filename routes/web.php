@@ -21,9 +21,9 @@ Route::get('/', 'HomeController@index');
 Route::resource('/user', 'UserController');
 Route::post('/user/ganti-password', 'UserController@gantiPassword');
 Route::get('/user/alamat-user/{id}', 'UserController@dataAlamat');
+Route::post('/user/check-email', 'UserController@checkEmail');
 //endpoint barang
 Route::resource('/barang', 'BarangController');
-Route::post('/user/check-email', 'UserController@checkEmail');
 //endpoint kategori barang
 Route::resource('/kategori', 'KategoriController');
 //endpoint transaksi
@@ -31,3 +31,7 @@ Route::resource('/transaksi', 'TransaksiController');
 //endpoint rekening
 Route::resource('/rekening', 'RekeningController');
 Route::post('/rekening/edit-foto', 'RekeningController@editFoto');
+//endpoint foto barang
+Route::get('/barang/foto-barang/{barang_id}', 'FotoBarangController@index');
+Route::post('/barang/tambah-foto', 'FotoBarangController@store');
+Route::delete('/barang/hapus-foto/{id}', 'FotoBarangController@destroy');
