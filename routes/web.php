@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 //ENDPOINT ADMIN
 
 //end point home
-Route::get('/', 'HomeController@index');
+Route::get('/dashboard', 'HomeController@index');
 //end point user
 Route::resource('/user', 'UserController');
 Route::post('/user/ganti-password', 'UserController@gantiPassword');
@@ -35,3 +35,9 @@ Route::post('/rekening/edit-foto', 'RekeningController@editFoto');
 Route::get('/barang/foto-barang/{barang_id}', 'FotoBarangController@index');
 Route::post('/barang/tambah-foto', 'FotoBarangController@store');
 Route::delete('/barang/hapus-foto/{id}', 'FotoBarangController@destroy');
+
+
+// USER
+Route::get('/', function () {
+  return view("user.index");
+});
