@@ -57,7 +57,8 @@
 </div>
 @stop
 
-<!-- Modal tambah -->
+@section('modal')
+    <!-- Modal tambah -->
 <div class="modal fade" id="modalTambahData" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -68,7 +69,7 @@
                 </button>
             </div>
             <form id="formTambah" method="post">
-                @csrf();
+                @csrf()
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="name">Nama</label>
@@ -135,6 +136,8 @@
         </div>
     </div>
 </div>
+@endsection
+
 @section('javascript')
 <script>
     $(document).ready(function() {
@@ -303,7 +306,7 @@
                 dataType: 'json',
                 success: function(hasil) {
                     $(`#formEdit`).html(` 
-                @csrf();
+                @csrf()
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="name">Nama</label>
@@ -367,7 +370,7 @@
         })
         $(document).on('click', '#btn-password', function() {
             const id = $(this).data('id');
-            $('#form-ganti-password').html(`@csrf();
+            $('#form-ganti-password').html(`@csrf()
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="password">Password</label>

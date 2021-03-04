@@ -40,6 +40,7 @@
 </div>
 @stop
 
+@section('modal')
 <!-- Modal tambah -->
 <div class="modal fade" id="modalTambahData" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -51,7 +52,7 @@
                 </button>
             </div>
             <form id="formTambah" method="post">
-                @csrf();
+                @csrf()
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="nama">Nama Kategori</label>
@@ -99,6 +100,8 @@
         </div>
     </div>
 </div>
+@endsection
+
 @section('javascript')
 <script>
     $(document).ready(function() {

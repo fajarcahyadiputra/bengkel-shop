@@ -4,4 +4,5 @@
 @yield('content')
 
 @include('admin/templet/footer')
+@yield('modal')
 @yield('javascript')

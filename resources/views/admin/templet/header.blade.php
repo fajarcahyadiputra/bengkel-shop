@@ -6,16 +6,15 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="aplikasi bengkel shop">
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   <meta name="author" content="">
-  <!--  <link href="img/logo/logo.png" rel="icon"> -->
+  <link href="{{URL::asset('assets/ruangAdmin/img/logo/logo.png')}}" rel="icon">
   <title>@yield('title')</title>
   <!-- jquery -->
   <script src="{{URL::asset('assets/ruangAdmin/vendor/jquery/jquery.min.js')}}"></script>
   <!-- fontawesome -->
   <link href="{{URL::asset('assets/fontawesome/css/all.min.css')}}" rel="stylesheet" type="text/css">
   <link href="{{URL::asset('assets/ruangAdmin/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
-  <!-- chartjs -->
-  <script src="{{URL::asset('assets/chart/Chart.js')}}"></script>
   <!-- ruangadmin -->
   <link href="{{URL::asset('assets/ruangAdmin/css/ruang-admin.min.css')}}" rel="stylesheet">
   <!-- datatable -->

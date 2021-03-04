@@ -47,6 +47,7 @@
 </div>
 @stop
 
+@section('modal')
 <!-- Modal tambah -->
 <div class="modal fade" id="modalTambahData" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -117,6 +118,8 @@
         </div>
     </div>
 </div>
+@stop
+
 @section('javascript')
 <script>
     $(document).ready(function() {

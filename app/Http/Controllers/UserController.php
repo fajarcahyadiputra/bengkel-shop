@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\AlamatUser;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -36,7 +37,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $data = $request->except('_token');
-        $data['password'] = bcrypt($request->input('password'));
+        $data['password'] = Hash::make($request->input('password'));
         $create = User::create($data);
         if ($create) {
             return response()->json(true);
@@ -73,7 +74,7 @@ class UserController extends Controller
     public function gantiPassword(Request $request)
     {
         $user = User::find($request->input('id'));
-        $user->fill(['password' => bcrypt($request->input('password'))]);
+        $user->fill(['password' => Hash::make($request->input('password'))]);
         if ($user->save()) {
             return response()->json(true);
         } else {
