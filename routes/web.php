@@ -18,13 +18,14 @@ use Illuminate\Support\Facades\Route;
 //endpoint aut
 Route::get('/login', 'LoginController@index')->name('login');
 Route::post('/login', 'LoginController@store');
+Route::post('/logout', 'LoginController@logout')->name('logout');
 
 //ENDPOINT ADMIN
 
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => ['auth', 'admin']], function () {
 
   //endpoint home
-  Route::get('/dashboard', 'HomeController@index');
+  Route::get('/dashboard', 'HomeController@index')->name('dashboard');
   //endpoint user
   Route::resource('/user', 'UserController');
   Route::post('/user/ganti-password', 'UserController@gantiPassword');
