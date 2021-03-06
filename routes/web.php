@@ -27,12 +27,21 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
   //endpoint home
   Route::get('/dashboard', 'HomeController@index')->name('dashboard');
   //endpoint user
-  Route::resource('/user', 'UserController');
-  Route::post('/user/ganti-password', 'UserController@gantiPassword');
-  Route::get('/user/alamat-user/{id}', 'UserController@dataAlamat');
-  Route::post('/user/check-email', 'UserController@checkEmail');
+  Route::group(['prefix' => 'user'], function () {
+    Route::resource('/', 'UserController');
+    Route::post('/ganti-password', 'UserController@gantiPassword');
+    Route::get('/alamat-user/{id}', 'UserController@dataAlamat');
+    Route::post('/check-email', 'UserController@checkEmail');
+  });
+
   //endpoint barang
-  Route::resource('/barang', 'BarangController');
+  Route::group(['prefix' => 'barang'], function () {
+    Route::resource('/', 'BarangController');
+    Route::get('/foto-barang/{barang_id}', 'FotoBarangController@index');
+    Route::post('/tambah-foto', 'FotoBarangController@store');
+    Route::delete('/hapus-foto/{id}', 'FotoBarangController@destroy');
+  });
+
   //endpoint kategori barang
   Route::resource('/kategori', 'KategoriController');
   //endpoint transaksi
@@ -40,15 +49,9 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
   //endpoint rekening
   Route::resource('/rekening', 'RekeningController');
   Route::post('/rekening/edit-foto', 'RekeningController@editFoto');
-  //endpoint foto barang
-  Route::get('/barang/foto-barang/{barang_id}', 'FotoBarangController@index');
-  Route::post('/barang/tambah-foto', 'FotoBarangController@store');
-  Route::delete('/barang/hapus-foto/{id}', 'FotoBarangController@destroy');
 });
 
 
 
 // USER
-Route::get('/', function () {
-  return view("users.index");
-});
+Route::get('/', "Users\HomeController@index");

@@ -10,6 +10,11 @@ class Barang extends Model
     protected $fillable = ['kategori_id', 'nama', 'kode_barang', 'status_aktif', 'harga', 'deskripsi', 'kondisi', 'berat', 'stok'];
     public function kategori()
     {
-        return $this->belongsTo('App\Models\Kategori');
+        return $this->belongsTo(Kategori::class);
+    }
+
+    public function foto_barang()
+    {
+        return $this->hasMany(FotoBarang::class);
     }
 }
