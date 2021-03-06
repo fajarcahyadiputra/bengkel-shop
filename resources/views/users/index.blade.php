@@ -11,14 +11,15 @@
     <div class="single-slider">
       <div class="container">
         <div class="row no-gutters">
-          <div class="col-lg-9 offset-lg-3 col-12">
+          <div class="col-lg-9 col-12">
             <div class="text-inner">
               <div class="row">
-                <div class="col-lg-7 col-12">
+                <div class="col-lg-9 col-12">
                   <div class="hero-text">
-                    <h1>Bengkel SHOP</h1>
-                    <p>Maboriosam in a nesciung eget magnae <br> dapibus disting tloctio in the find it pereri <br> odiy
-                      maboriosm.</p>
+                    <h1>Bengkel Shop</h1>
+                    <p class="text-white">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+                    </p>
                     <div class="button">
                       <a href="#" class="btn">Shop Now!</a>
                     </div>
@@ -37,13 +38,13 @@
   <!-- Start Product Area -->
   <div class="product-area section">
     <div class="container">
-      <div class="row">
+      {{-- <div class="row">
         <div class="col-12">
           <div class="section-title">
-            <h2>Trending Item</h2>
           </div>
         </div>
-      </div>
+      </div> --}}
+      <h2>Semua Produk</h2>
       <div class="row">
         <div class="col-12">
           <div class="product-info">
@@ -57,9 +58,10 @@
                       <div class="single-product">
                         <div class="product-img">
                           <a href="product-details.html">
-                            <img class="default-img" src="/foto/barang/{{$value->foto_barang[0]->foto}}" alt="#">
-                            <img class="hover-img" src="/foto/barang/{{$value->foto_barang[0]->foto}}" alt="#">
+                            <img class="default-img" src="/foto/barang/{{count($value->foto_barang) ? $value->foto_barang[0]->foto : ""}}" alt="#">
+                            <img class="hover-img" src="/foto/barang/{{count($value->foto_barang) ? $value->foto_barang[0]->foto : ""}}" alt="#">
                           </a>
+
                           <div class="button-head">
                             <div class="product-action">
                               <a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="#"><i
@@ -73,6 +75,7 @@
                             </div>
                           </div>
                         </div>
+
                         <div class="product-content">
                           <h3><a href="product-details.html">{{ $value->nama }}</a></h3>
                           <div class="product-price">
