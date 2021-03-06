@@ -16,7 +16,7 @@ class AdminMiddlerware
     public function handle($request, Closure $next)
     {
         if (auth()->user()->role === 'user') {
-            return redirect('/');
+            return abort(403, "you Don't have access");
         }
         return $next($request);
     }

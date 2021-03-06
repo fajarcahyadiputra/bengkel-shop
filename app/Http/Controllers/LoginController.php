@@ -28,7 +28,7 @@ class LoginController extends Controller
         } else if ($data->role === 'user') {
             return redirect('/');
         } else {
-            return abort(401, 'Who Are You');
+            return abort(403, 'Who Are You');
         }
     }
     public function logout()
