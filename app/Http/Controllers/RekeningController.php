@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Kategori;
 use App\Models\Rekening;
 use Illuminate\Support\Facades\Validator;
 

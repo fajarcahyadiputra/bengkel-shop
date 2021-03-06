@@ -14,6 +14,7 @@ class BarangController extends Controller
         $kategori = Kategori::all();
         return view('admin.barang.index', compact('barang', 'kategori'));
     }
+
     public function store(Request $request)
     {
         $data = $request->except('_token');
@@ -33,7 +34,7 @@ class BarangController extends Controller
             $barang->delete();
             return response()->json(true);
         } else {
-            return response()->json(true);
+            return response()->json(false);
         }
     }
     public function show($id)
