@@ -18,6 +18,8 @@ use Illuminate\Support\Facades\Route;
 //endpoint aut
 Route::get('/login', 'LoginController@index')->name('login');
 Route::post('/login', 'LoginController@store');
+Route::get('/register', 'RegisterController@index')->name('register');
+Route::post('/register', 'RegisterController@store');
 Route::post('/logout', 'LoginController@logout')->name('logout');
 
 //ENDPOINT ADMIN
@@ -27,20 +29,16 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
   //endpoint home
   Route::get('/dashboard', 'HomeController@index')->name('dashboard');
   //endpoint user
-  Route::group(['prefix' => 'user'], function () {
-    Route::resource('/', 'UserController');
-    Route::post('/ganti-password', 'UserController@gantiPassword');
-    Route::get('/alamat-user/{id}', 'UserController@dataAlamat');
-    Route::post('/check-email', 'UserController@checkEmail');
-  });
+  Route::resource('/user', 'UserController');
+  Route::post('/ganti-password', 'UserController@gantiPassword');
+  Route::get('/alamat-user/{id}', 'UserController@dataAlamat');
+  Route::post('/check-email', 'UserController@checkEmail');
 
   //endpoint barang
-  Route::group(['prefix' => 'barang'], function () {
-    Route::resource('/', 'BarangController');
-    Route::get('/foto-barang/{barang_id}', 'FotoBarangController@index');
-    Route::post('/tambah-foto', 'FotoBarangController@store');
-    Route::delete('/hapus-foto/{id}', 'FotoBarangController@destroy');
-  });
+  Route::resource('/barang', 'BarangController');
+  Route::get('/foto-barang/{barang_id}', 'FotoBarangController@index');
+  Route::post('/tambah-foto', 'FotoBarangController@store');
+  Route::delete('/hapus-foto/{id}', 'FotoBarangController@destroy');
 
   //endpoint kategori barang
   Route::resource('/kategori', 'KategoriController');

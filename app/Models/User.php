@@ -11,7 +11,7 @@ class User extends Authenticatable
     use Notifiable;
 
     protected $table = 'users';
-    protected $fillable = ['nama', 'email', 'password', 'role', 'status_aktif'];
+    protected $fillable = ['nama', 'email', 'password', 'role', 'status_aktif', 'avatar'];
     protected $casts = [
         'created_at' => 'datetime',
         'updated_at' => 'datetime',

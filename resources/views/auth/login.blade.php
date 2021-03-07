@@ -71,7 +71,7 @@
                   </form>
                   <hr>
                   <div class="text-center d-flex justify-content-around">
-                    <a class="font-weight-bold small" href="register.html">Create an Account!</a>
+                    <a class="font-weight-bold small" href="{{route('register')}}">Create an Account!</a>
                     <a class="font-weight-bold small" href="register.html">Forget Password?</a>
                   </div>
                   <div class="text-center">
