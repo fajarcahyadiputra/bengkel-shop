@@ -33,8 +33,6 @@ class RegisterController extends Controller
                 'status' => 'error',
                 'errors' => $validate->errors()
             ]);
-        } else {
-            return response()->json('ok');
         }
         if ($request->hasFile('avatar')) {
             if ($request->file('avatar')->isValid()) {

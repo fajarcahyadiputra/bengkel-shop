@@ -16,16 +16,18 @@ use Illuminate\Support\Facades\Route;
 //ENDPOINT AUTH
 
 //endpoint aut
-Route::get('/login', 'LoginController@index')->name('login');
-Route::post('/login', 'LoginController@store');
-Route::get('/register', 'RegisterController@index')->name('register');
-Route::post('/register', 'RegisterController@store');
-Route::post('/logout', 'LoginController@logout')->name('logout');
+Route::group(['middleware' => 'loginRegister'], function () {
+  Route::get('/login', 'LoginController@index')->name('login');
+  Route::post('/login', 'LoginController@store');
+  Route::get('/register', 'RegisterController@index')->name('register');
+  Route::post('/register', 'RegisterController@store');
+});
 
 //ENDPOINT ADMIN
 
 Route::group(['middleware' => ['auth', 'admin']], function () {
 
+  Route::post('/logout', 'LoginController@logout')->name('logout');
   //endpoint home
   Route::get('/dashboard', 'HomeController@index')->name('dashboard');
   //endpoint user
