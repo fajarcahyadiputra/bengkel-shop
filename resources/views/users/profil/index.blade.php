@@ -17,42 +17,126 @@
                             <!-- Start Single Tab -->
                             <div class="tab-pane fade show active" id="man" role="tabpanel">
                                 <div class="tab-single">
+                                    <form id="formRegister" method="post" enctype="multipart/form-data">
+                                        @csrf
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="name">Nama</label>
+                                                    <input type="type" name="nama" id="name" class="form-control">
+                                                    <small id="error-nama" class="text-danger">
 
-                                    <div class="profil-user">
-                                        <form action="">
-                                            <div class="row">
-                                                <div class="col-md-7">
-                                                    <div class="form-group">
-                                                        <label for="name">Name</label>
-                                                        <input readonly type="text" name="nama" id="name"
-                                                            class="form-control" value="{{ $user->nama }}">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="email">Email</label>
-                                                        <input readonly type="text" name="email" id="email"
-                                                            class="form-control" value="{{ $user->email }}">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="email">Email</label>
-                                                        <input readonly type="text" name="email" id="email"
-                                                            class="form-control" value="{{ $user->email }}">
-                                                    </div>
-                                                    <button class="btn btn-success">Edit Profil?</button>
+                                                    </small>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="email">Email</label>
+                                                    <input type="email" name="email" id="email" class="form-control">
+                                                    <small id="error-email" class="text-danger">
 
+                                                    </small>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="password">Password</label>
+                                                    <input type="password" name="password" id="password"
+                                                        class="form-control" minlength="6">
+                                                    <small id="error-password" class="text-danger">
+
+                                                    </small>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="password_confirmation">Comfirm Password</label>
+                                                    <input type="password" id="password_confirmation"
+                                                        name="password_confirmation" class="form-control">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="avatar">Avatar</label>
+                                                    <input type="file" name="avatar" id="avatar" class="form-control">
+                                                    <small id="error-avatar" class="text-danger">
+
+                                                    </small>
                                                 </div>
                                             </div>
-                                        </form>
-                                    </div>
+                                            <div class="col-md-6">
 
+                                                <label for="provinsi">Provinsi</label>
+                                                <select name="provinsi" id="provinsi" class="custom-select">
+                                                    @foreach ($provinsi as $prov)
+                                                        <option value="{{ $prov['province_id'] }}">
+                                                            {{ $prov['province'] }}</option>
+                                                    @endforeach
+                                                </select>
+                                                <small id="error-provinsi" class="text-danger">
+
+                                                </small>
+
+                                                <div class="form-group">
+                                                    <label for="kabupaten">Kabupaten</label>
+                                                    <select name="kabupaten" id="kabupaten" class="form-control">
+                                                        @foreach ($kabupaten as $kab)
+                                                            <option value="{{ $kab['city_id'] }}">
+                                                                {{ $kab['city_name'] }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    <small id="error-kabupaten" class="text-danger">
+
+                                                    </small>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="kecamatan">Kecamatan</label>
+                                                    <select name="kecamatan" id="kecamatan" class="form-control">
+                                                        @foreach ($kecamatan as $kec)
+                                                            <option value="{{ $kec }}">
+                                                                {{ $kec }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    <small id="error-kecamatan" class="text-danger">
+
+                                                    </small>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="kode_pos">Kode Pos</label>
+                                                    <input type="number" id="kode_pos" name="kode_pos" class="form-control">
+                                                    <small id="error-kode" class="text-danger">
+
+                                                    </small>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="nomer_hp">Nomer Handphone</label>
+                                                    <input type="text" id="nomer_hp" name="nomer_hp" class="form-control">
+                                                    <small id="error-nomer" class="text-danger">
+
+                                                    </small>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="jenis_kelamin">Jenis Kelamin</label>
+                                                    <select name="jenis_kelamin" id="jenis_kelamin" class="form-control">
+                                                        <option selected disabled hidden>Pilih Jenis Kelamin
+                                                        </option>
+                                                        <option value="perempuan">Perempuan</option>
+                                                        <option value="laki-laki">Laki-laki</option>
+                                                    </select>
+                                                    <small id="error-jenis" class="text-danger">
+
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-primary btn-block">Register</button>
+                                        </div>
+                                        <hr>
+                                    </form>
                                 </div>
-                            </div>
-                            <!--/ End Single Tab -->
 
+                            </div>
                         </div>
+                        <!--/ End Single Tab -->
+
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
     <!-- End Product Area -->
 
@@ -221,4 +305,22 @@
     <!-- Modal end -->
 
 
+@endsection
+@section('javascript')
+    <script>
+        $(document).ready(function() {
+            $('#provinsi').select2({
+
+            });
+            $('#kabupaten').select2({
+                placeholder: "--Pilih Kabupaten/Kota--",
+                allowClear: true
+            });
+            $('#kecamatan').select2({
+                placeholder: "--Pilih Kecamatan--",
+                allowClear: true
+            });
+        })
+
+    </script>
 @endsection

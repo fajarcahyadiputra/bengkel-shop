@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="/assets-user/css/magnific-popup.min.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="/assets-user/css/font-awesome.css">
+    <link href="{{ URL::asset('assets/select2/css/select2.min.css') }}" rel="stylesheet" />
     <!-- Fancybox -->
     <link rel="stylesheet" href="/assets-user/css/jquery.fancybox.min.css">
     <!-- Themify Icons -->
@@ -336,7 +337,6 @@
         </div>
     </footer>
     <!-- /End Footer Area -->
-
     <!-- Jquery -->
     <script src="/assets-user/js/jquery.min.js"></script>
     <script src="/assets-user/js/jquery-migrate-3.0.0.js"></script>
@@ -369,6 +369,8 @@
     <script src="/assets-user/js/easing.js"></script>
     <!-- Active JS -->
     <script src="/assets-user/js/active.js"></script>
+    <script src="{{ URL::asset('assets/select2/js/select2.min.js') }}"></script>
+    @yield('javascript')
 </body>
 
 </html>
