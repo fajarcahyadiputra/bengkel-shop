@@ -15,9 +15,9 @@ class CreateRekeningTable extends Migration
     {
         Schema::create('rekening', function (Blueprint $table) {
             $table->id();
-            $table->string('atas_nama');
-            $table->string('nomer_rekening');
-            $table->string('nama_bank');
+            $table->string('atas_nama', 50);
+            $table->string('nomer_rekening', 50);
+            $table->string('nama_bank', 50);
             $table->string('foto');
             $table->timestamps();
         });

@@ -34,7 +34,7 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
   Route::resource('/user', 'UserController');
   Route::post('/ganti-password', 'UserController@gantiPassword');
   Route::get('/alamat-user/{id}', 'UserController@dataAlamat');
-  Route::post('/check-email', 'UserController@checkEmail');
+  Route::post('/user/check-email', 'UserController@checkEmail');
 
   //endpoint barang
   Route::resource('/barang', 'BarangController');
@@ -53,5 +53,8 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
 
 
 
-// USER
-Route::get('/', "Users\HomeController@index");
+Route::group(['namespace' => 'Users'], function () {
+  // USER
+  Route::get('/', "HomeController@index");
+  Route::get('/profil/{id}', "ProfilController@index");
+});

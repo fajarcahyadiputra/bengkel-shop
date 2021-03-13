@@ -16,13 +16,13 @@ class CreateAlamatUserTable extends Migration
         Schema::create('alamat_user', function (Blueprint $table) {
             $table->id();
             $table->foreignId('users_id')->constrained('users')->onDelete('cascade');
-            $table->string('nama_penerima');
-            $table->string('kecamatan');
-            $table->string('kabupaten');
-            $table->string('provinsi');
+            $table->string('nama_penerima')->nullable();
+            $table->string('kecamatan', 50);
+            $table->integer('kabupaten');
+            $table->integer('provinsi');
             $table->integer('kode_pos');
-            $table->string('nomer_hp');
-            $table->text('patokan');
+            $table->string('nomer_hp', 20);
+            $table->text('patokan')->nullable();
             $table->timestamps();
         });
     }

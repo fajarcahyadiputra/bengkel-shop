@@ -15,13 +15,14 @@
     <link href="{{ URL::asset('assets/ruangAdmin/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet"
         type="text/css">
     <link href="{{ URL::asset('assets/ruangAdmin/css/ruang-admin.min.css') }}" rel="stylesheet">
+    <link href="{{ URL::asset('assets/select2/css/select2.min.css') }}" rel="stylesheet" />
 </head>
 
 <body class="bg-gradient-login">
     <!-- Register Content -->
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-xl-10 col-lg-12 col-md-9">
+            <div class="col-xl-10 col-lg-12 col-md-12">
                 <div class="card shadow-sm my-5">
                     <div class="card-body p-0">
                         <div class="row">
@@ -32,39 +33,110 @@
                                     </div>
                                     <form id="formRegister" method="post" enctype="multipart/form-data">
                                         @csrf
-                                        <div class="form-group">
-                                            <label for="name">Nama</label>
-                                            <input type="type" name="nama" id="name" class="form-control">
-                                            <small id="error-nama" class="text-danger">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="name">Nama</label>
+                                                    <input type="type" name="nama" id="name" class="form-control">
+                                                    <small id="error-nama" class="text-danger">
 
-                                            </small>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="email">Email</label>
-                                            <input type="email" name="email" id="email" class="form-control">
-                                            <small id="error-email" class="text-danger">
+                                                    </small>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="email">Email</label>
+                                                    <input type="email" name="email" id="email" class="form-control">
+                                                    <small id="error-email" class="text-danger">
 
-                                            </small>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="password">Password</label>
-                                            <input type="password" name="password" id="password" class="form-control"
-                                                minlength="6">
-                                            <small id="error-password" class="text-danger">
+                                                    </small>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="password">Password</label>
+                                                    <input type="password" name="password" id="password"
+                                                        class="form-control" minlength="6">
+                                                    <small id="error-password" class="text-danger">
 
-                                            </small>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="password_confirmation">Comfirm Password</label>
-                                            <input type="password" id="password_confirmation"
-                                                name="password_confirmation" class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="avatar">Avatar</label>
-                                            <input type="file" name="avatar" id="avatar" class="form-control">
-                                            <small id="error-avatar" class="text-danger">
+                                                    </small>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="password_confirmation">Comfirm Password</label>
+                                                    <input type="password" id="password_confirmation"
+                                                        name="password_confirmation" class="form-control">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="avatar">Avatar</label>
+                                                    <input type="file" name="avatar" id="avatar" class="form-control">
+                                                    <small id="error-avatar" class="text-danger">
 
-                                            </small>
+                                                    </small>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="provinsi">Provinsi</label>
+                                                    <select name="provinsi" id="provinsi" class="form-control">
+                                                        @foreach ($provinsi as $prov)
+                                                            <option value="{{ $prov['province_id'] }}">
+                                                                {{ $prov['province'] }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    <small id="error-provinsi" class="text-danger">
+
+                                                    </small>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="kabupaten">Kabupaten/kota</label>
+                                                    <select name="kabupaten" id="kabupaten" class="form-control">
+                                                        @foreach ($kabupaten as $kab)
+                                                            <option value="{{ $kab['city_id'] }}">
+                                                                {{ $kab['city_name'] }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    <small id="error-kabupaten" class="text-danger">
+
+                                                    </small>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="kecamatan">Kecamatan</label>
+                                                    <select name="kecamatan" id="kecamatan" class="form-control">
+                                                        @foreach ($kecamatan as $kec)
+                                                            <option value="{{ $kec }}">
+                                                                {{ $kec }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    <small id="error-kecamatan" class="text-danger">
+
+                                                    </small>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="kode_pos">Kode Pos</label>
+                                                    <input type="number" id="kode_pos" name="kode_pos"
+                                                        class="form-control">
+                                                    <small id="error-kode" class="text-danger">
+
+                                                    </small>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="nomer_hp">Nomer Handphone</label>
+                                                    <input type="text" id="nomer_hp" name="nomer_hp"
+                                                        class="form-control">
+                                                    <small id="error-nomer" class="text-danger">
+
+                                                    </small>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="jenis_kelamin">Jenis Kelamin</label>
+                                                    <select name="jenis_kelamin" id="jenis_kelamin"
+                                                        class="form-control">
+                                                        <option selected disabled hidden>Pilih Jenis Kelamin
+                                                        </option>
+                                                        <option value="perempuan">Perempuan</option>
+                                                        <option value="laki-laki">Laki-laki</option>
+                                                    </select>
+                                                    <small id="error-jenis" class="text-danger">
+
+                                                    </small>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <button type="submit" class="btn btn-primary btn-block">Register</button>
@@ -88,9 +160,29 @@
     </div>
 
 </body>
+<!-- jquery -->
+<script src="{{ URL::asset('assets/ruangAdmin/vendor/jquery/jquery.min.js') }}"></script>
 <!-- sweetalert -->
 <script src="{{ URL::asset('assets/sweetalert/sweetalert2.all.min.js') }}"></script>
+<script src="{{ URL::asset('assets/select2/js/select2.min.js') }}"></script>
 <script>
+    window.onload = function() {
+        console.log('tunggu');
+    }
+    $(document).ready(function() {
+        $('#provinsi').select2({
+            placeholder: "--Pilih Provinsi--",
+            allowClear: true
+        });
+        $('#kabupaten').select2({
+            placeholder: "--Pilih Kabupaten/Kota--",
+            allowClear: true
+        });
+        $('#kecamatan').select2({
+            placeholder: "--Pilih Kecamatan--",
+            allowClear: true
+        });
+    })
     const form = document.getElementById('formRegister');
     form.addEventListener('submit', async function(e) {
         e.preventDefault();
@@ -139,19 +231,35 @@
             })
             const result = await sendRequest.json();
             if (!result.errors) {
-                Swal.fire(
-                    'sukses...!',
-                    'Anda Sukses Registrasi',
-                    'success'
-                ).then(() => {
-                    document.location.href = '/';
-                });
+                if (result) {
+                    console.log('success');
+                    Swal.fire(
+                        'sukses...!',
+                        'Anda Sukses Registrasi',
+                        'success'
+                    ).then(() => {
+                        document.location.href = '/';
+                    });
+                } else {
+                    Swal.fire(
+                        'error...!',
+                        'Ada Kesalahan Pas Registrasi',
+                        'error'
+                    )
+                }
             } else {
+                console.log(result);
                 const resultArray = Object.values(result.errors);
                 document.getElementById(`error-nama`).innerHTML = ``
                 document.getElementById(`error-email`).innerHTML = ``
                 document.getElementById(`error-password`).innerHTML = ``
                 document.getElementById(`error-avatar`).innerHTML = ``
+                document.getElementById(`error-provinsi`).innerHTML = ``
+                document.getElementById(`error-kecamatan`).innerHTML = ``
+                document.getElementById(`error-kabupaten`).innerHTML = ``
+                document.getElementById(`error-kode`).innerHTML = ``
+                document.getElementById(`error-nomer`).innerHTML = ``
+                document.getElementById(`error-jenis`).innerHTML = ``
                 resultArray.map(data => {
                     const filedId = data[0].split(' ')[1];
                     document.getElementById(`error-${filedId}`).innerHTML = data[0];

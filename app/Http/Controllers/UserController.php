@@ -37,6 +37,13 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $data = $request->except('_token');
+        if (!isset($request->avatar)) {
+            if ($request->jenis_kelamin == 'laki-laki') {
+                $data['avatar'] = 'foto/users/boy.png';
+            } else {
+                $data['avatar'] = 'foto/users/girl.png';
+            }
+        }
         $data['password'] = Hash::make($request->input('password'));
         $create = User::create($data);
         if ($create) {
@@ -44,6 +51,7 @@ class UserController extends Controller
         } else {
             return response()->json(false);
         }
+        return response()->json($pesan);
     }
     public function destroy($id)
     {

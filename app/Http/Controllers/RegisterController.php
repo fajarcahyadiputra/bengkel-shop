@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AlamatUser;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -11,7 +13,19 @@ class RegisterController extends Controller
 {
     public function index()
     {
-        return view('auth.register');
+        $provinsi = getProvinces();
+        $kabupaten = getCities();
+        $opts = array(
+            'http' => array(
+                'method' => "GET",
+                'header' => "Accept-language: en\r\n" .
+                    "Cookie: foo=bar\r\n"
+            )
+        );
+
+        $context = stream_context_create($opts);
+        $kecamatan = json_decode(file_get_contents(public_path('kecamatan.json'), false, $context));
+        return view('auth.register', compact('provinsi', 'kabupaten', 'kecamatan'));
     }
     public function store(Request $request)
     {
@@ -22,11 +36,16 @@ class RegisterController extends Controller
         }
         $rule = [
             'nama' => 'required|string',
+            'kecamatan' => 'required|string',
+            'kabupaten' => 'required|integer',
+            'provinsi' => 'required|integer',
+            'kode_pos' => 'required|integer',
+            'nomer_hp' => 'required|string',
+            'jenis_kelamin' => 'required|string',
             'email' => 'required|email',
             'password' => 'required|confirmed',
             'avatar' => 'mimes:jpg,png,jpeg,gift|max:2000|required'
         ];
-
         $validate = Validator::make($data, $rule);
         if ($validate->fails()) {
             return response()->json([
@@ -42,11 +61,29 @@ class RegisterController extends Controller
             }
         }
         $data['password'] = Hash::make($request->input('password'));
-        $newUser = User::create($data);
-        if ($newUser) {
+        DB::beginTransaction();
+        try {
+            $newUser = User::create([
+                'nama' => $data['nama'],
+                'jenis_kelamin' => $data['jenis_kelamin'],
+                'email' => $data['email'],
+                'password' => $data['password'],
+                'role' => 'user',
+                'avatar' => $data['avatar']
+            ]);
+            $newaddress = AlamatUser::create([
+                'users_id' => $newUser->id,
+                'kecamatan' => $data['kecamatan'],
+                'kabupaten' => $data['kabupaten'],
+                'kode_pos'  => $data['kode_pos'],
+                'provinsi'  => $data['provinsi'],
+                'nomer_hp'  => $data['nomer_hp']
+            ]);
+            DB::commit();
             auth()->attempt($request->only('email', 'password'));
             return response()->json(true);
-        } else {
+        } catch (\Throwable $th) {
+            DB::rollBack();
             return response()->json(false);
         }
     }

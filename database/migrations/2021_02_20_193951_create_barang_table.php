@@ -16,8 +16,8 @@ class CreateBarangTable extends Migration
         Schema::create('barang', function (Blueprint $table) {
             $table->id();
             $table->foreignId('kategori_id')->constrained('kategori')->onDelete('cascade');
-            $table->string('nama');
-            $table->string('kode_barang');
+            $table->string('nama', 200);
+            $table->string('kode_barang', 50);
             $table->enum('status_aktif', ['aktif', 'tidak'])->default('aktif');
             $table->bigInteger('harga');
             $table->text('deskripsi');

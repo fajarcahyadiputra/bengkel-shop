@@ -15,12 +15,12 @@ class CreateUserTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->string('email');
-            $table->string('password');
+            $table->string('nama', 50);
+            $table->string('email', 100);
+            $table->string('password', 200);
             $table->enum('role', ['user', 'admin'])->default('user');
             $table->enum('status_aktif', ['aktif', 'tidak'])->default('aktif');
-            $table->string('avatar', 100);
+            $table->string('avatar', 100)->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CreateUserTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user');
+        Schema::dropIfExists('users');
     }
 }

@@ -29,7 +29,7 @@ function getProvinces()
     if ($err) {
         return [];
     } else {
-        return $response;
+        return json_decode($response, true)['rajaongkir']['results'];
     }
 }
 function getProvince($province_id)
@@ -87,7 +87,7 @@ function getCities()
     if ($err) {
         return [];
     } else {
-        return $response;
+        return json_decode($response, true)['rajaongkir']['results'];
     }
 }
 function getCity($city_id)
