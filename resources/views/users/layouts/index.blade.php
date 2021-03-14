@@ -81,18 +81,6 @@
                         </div>
                         <!--/ End Top Left -->
                     </div>
-                    <div class="col-lg-8 col-md-12 col-12">
-                        <!-- Top Right -->
-                        <div class="right-content">
-                            <ul class="list-main">
-                                <li><i class="ti-location-pin"></i> Store location</li>
-                                <li><i class="ti-alarm-clock"></i> <a href="#">Daily deal</a></li>
-                                <li><i class="ti-user"></i> <a href="#">My account</a></li>
-                                <li><i class="ti-power-off"></i><a href="{{ route('login') }}">Login</a></li>
-                            </ul>
-                        </div>
-                        <!-- End Top Right -->
-                    </div>
                 </div>
             </div>
         </div>
@@ -106,47 +94,14 @@
                             <a href="index.html"><img src="/assets-user/images/logo.png" alt="logo"></a>
                         </div>
                         <!--/ End Logo -->
-                        <!-- Search Form -->
-                        <div class="search-top">
-                            <div class="top-search"><a href="#0"><i class="ti-search"></i></a></div>
-                            <!-- Search Form -->
-                            <div class="search-top">
-                                <form class="search-form">
-                                    <input type="text" placeholder="Search here..." name="search">
-                                    <button value="search" type="submit"><i class="ti-search"></i></button>
-                                </form>
-                            </div>
-                            <!--/ End Search Form -->
-                        </div>
+
                         <!--/ End Search Form -->
                         <div class="mobile-nav"></div>
                     </div>
-                    <div class="col-lg-8 col-md-7 col-12">
-                        <div class="search-bar-top">
-                            <div class="search-bar">
-                                <select>
-                                    <option selected="selected">All Category</option>
-                                    <option>watch</option>
-                                    <option>mobile</option>
-                                    <option>kid’s item</option>
-                                </select>
-                                <form>
-                                    <input name="search" placeholder="Search Products Here....." type="search">
-                                    <button class="btnn"><i class="ti-search"></i></button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-12">
+
+                    <div class="col-md-10 col-12">
                         <div class="right-bar">
                             <!-- Search Form -->
-                            <div class="sinlge-bar">
-                                <a href="#" class="single-icon"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
-                            </div>
-                            <div class="sinlge-bar">
-                                <a href="#" class="single-icon"><i class="fa fa-user-circle-o"
-                                        aria-hidden="true"></i></a>
-                            </div>
                             <div class="sinlge-bar shopping">
                                 <a href="#" class="single-icon"><i class="ti-bag"></i> <span
                                         class="total-count">2</span></a>
@@ -202,25 +157,38 @@
                                     <div class="navbar-collapse">
                                         <div class="nav-inner">
                                             <ul class="nav main-menu menu navbar-nav">
-                                                <li class="active"><a href="#">Home</a></li>
-                                                <li><a href="#">Product</a></li>
-                                                <li><a href="#">Service</a></li>
-                                                <li><a href="#">Shop<i class="ti-angle-down"></i><span
-                                                            class="new">New</span></a>
+                                                <li><a href="/">Home</a></li>
+                                                <li><a href="#">Kategori
+                                                        <i class="ti-angle-down"></i></a>
                                                     <ul class="dropdown">
-                                                        <li><a href="shop-grid.html">Shop Grid</a></li>
-                                                        <li><a href="cart.html">Cart</a></li>
-                                                        <li><a href="checkout.html">Checkout</a></li>
+                                                        @foreach ($data->kategori as $key => $value)
+                                                            <li>
+                                                                <a
+                                                                    href="/kategoris/{{ $value->id }}">{{ $value->nama }}</a>
+                                                            </li>
+
+                                                        @endforeach
                                                     </ul>
                                                 </li>
-                                                <li><a href="#">Pages</a></li>
-                                                <li><a href="#">Blog<i class="ti-angle-down"></i></a>
-                                                    <ul class="dropdown">
-                                                        <li><a href="blog-single-sidebar.html">Blog Single Sidebar</a>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                                <li><a href="contact.html">Contact Us</a></li>
+                                                <li><a href="/kontak-kami">Kontak Kami</a></li>
+                                                @auth
+                                                    <li><a href="#">Kategori
+                                                            <i class="ti-angle-down"></i></a>
+                                                        <ul class="dropdown">
+                                                            @foreach ($data->kategori as $key => $value)
+                                                                <li>
+                                                                    <a
+                                                                        href="/kategoris/{{ $value->id }}">{{ $value->nama }}</a>
+                                                                </li>
+
+                                                            @endforeach
+                                                        </ul>
+                                                    </li>
+                                                @endauth
+                                                @guest
+                                                    <li><a href="{{ route('login') }}">Masuk</a></li>
+                                                    <li class="active"><a href="{{ route('register') }}">Daftar</a></li>
+                                                @endguest
                                             </ul>
                                         </div>
                                     </div>

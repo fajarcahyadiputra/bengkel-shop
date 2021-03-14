@@ -56,5 +56,6 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
 Route::group(['namespace' => 'Users'], function () {
   // USER
   Route::get('/', "HomeController@index");
+  Route::get('/kategoris/{id}', "HomeController@kategoris");
   Route::get('/profil/{id}', "ProfilController@index");
 });

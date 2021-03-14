@@ -48,7 +48,7 @@
           </div>
         </div>
       </div> --}}
-            <h2>Semua Produk</h2>
+            <h2>Kategori: {{ $data->kategoriCurrent ? $data->kategoriCurrent->nama : 'Tidak Ditemukan' }}</h2>
             <div class="row">
                 <div class="col-12">
                     <div class="product-info">

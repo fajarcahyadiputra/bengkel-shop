@@ -4986,3 +4986,12 @@ Version:1.0
 /*=============================
 	End Footer CSS
 ===============================*/
+
+.single-product > .product-img {
+    min-height: 200px;
+}
+.img-cover{
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
