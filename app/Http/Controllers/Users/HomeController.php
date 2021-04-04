@@ -12,11 +12,9 @@ class HomeController extends Controller
 
     public function index()
     {
-        $data = (object) [
-            "barang" => Barang::with("foto_barang")->get(),
-            "kategori" => Kategori::get()
-        ];
+        $barang = Barang::with("foto_barang")->get();
+        $kategori = Kategori::get();
         // dd($data);
-        return view("users.index", compact("data"));
+        return view("users.index", compact("barang", "kategori"));
     }
 }

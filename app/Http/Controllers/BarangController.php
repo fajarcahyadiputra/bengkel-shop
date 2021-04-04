@@ -53,4 +53,13 @@ class BarangController extends Controller
             return response()->json(false);
         }
     }
+    public function searchProduct()
+    {
+        $barang = Barang::query();
+        $search  = request()->query('search');
+        $barang->when($search, function ($query) use ($search) {
+            return $query->where('nama', 'like', '%' . $search . '%');
+        });
+        return view('users.partials.product', ['barang' => $barang->get()]);
+    }
 }

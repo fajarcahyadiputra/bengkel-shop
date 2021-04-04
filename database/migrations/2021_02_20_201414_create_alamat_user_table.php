@@ -18,8 +18,10 @@ class CreateAlamatUserTable extends Migration
             $table->foreignId('users_id')->constrained('users')->onDelete('cascade');
             $table->string('nama_penerima')->nullable();
             $table->string('kecamatan', 50);
-            $table->integer('kabupaten');
-            $table->integer('provinsi');
+            $table->string('kabupaten', 50);
+            $table->integer('kab_id');
+            $table->string('provinsi', 50);
+            $table->integer('prov_id');
             $table->integer('kode_pos');
             $table->string('nomer_hp', 20);
             $table->text('patokan')->nullable();

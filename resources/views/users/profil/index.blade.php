@@ -83,7 +83,8 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="kecamatan">Kecamatan</label>
-                                                    <select name="kecamatan" id="kecamatan" class="form-control">
+                                                    <select style="width: 100%" name="kecamatan" id="kecamatan"
+                                                        class="form-control">
                                                         @foreach ($kecamatan as $kec)
                                                             <option value="{{ $kec }}">
                                                                 {{ $kec }}</option>
@@ -108,8 +109,8 @@
                                                     </small>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="jenis_kelamin">Jenis Kelamin</label>
-                                                    <select name="jenis_kelamin" id="jenis_kelamin" class="form-control">
+                                                    {{-- <label for="jenis_kelamin">Jenis Kelamin</label> --}}
+                                                    <select name="jenis_kelamin" id="jenis_kelamin">
                                                         <option selected disabled hidden>Pilih Jenis Kelamin
                                                         </option>
                                                         <option value="perempuan">Perempuan</option>

@@ -18,6 +18,6 @@ class User extends Authenticatable
     ];
     public function alamat()
     {
-        return $this->belongsTo('App\Models\AlamatUser');
+        return $this->belongsTo('App\Models\AlamatUser', 'users_id');
     }
 }

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Transaksi extends Model
 {
     protected $table = 'transaksi';
-    protected $fillable = ['user_id', 'alamat_user_id', 'rekening_id', 'invoice', 'status', 'total_transfer', 'kode_unik', 'batas_pembayaran'];
+    protected $fillable = ['user_id', 'alamat_user_id', 'rekening_id', 'invoice', 'status', 'total_transfer', 'kode_unik', 'batas_pembayaran', 'tagihan', 'kurir', 'jenis_pengiriman', 'nomer_rekening', 'atas_nama', 'catatan', 'bukti_transfer'];
     protected $casts = [
         'created_at' => 'datetime:Y-m-d H:m:s',
         'updated_at' => 'datetime:Y-m-d H:m:s'
@@ -22,7 +22,7 @@ class Transaksi extends Model
     }
     public function rekening()
     {
-        return $this->belongsTo('App\Models\Rekening');
+        return $this->belongsTo('App\Models\Rekening', 'rekening_id');
     }
     public function detailTransaksi()
     {

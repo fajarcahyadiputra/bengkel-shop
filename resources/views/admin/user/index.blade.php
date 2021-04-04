@@ -48,7 +48,7 @@
                                         <button data-id="{{ $user->id }}" id="btn-password"
                                             class="btn btn-warning btn-sm"><i class="fas fa-key"></i></button>
                                         @if ($user->role === 'user')
-                                            <a id="btn-alamat" href="/user/alamat-user/{{ $user->id }}"
+                                            <a id="btn-alamat" href="/alamat-user/{{ $user->id }}"
                                                 class="btn btn-warning btn-sm"><i class="fas fa-address-card"></i></a>
                                         @endif
                                     </td>
@@ -180,25 +180,25 @@
                 }
                 data.forEach((data, index) => {
                     $('#table-user').append(`
-                                                            <tr>
-                                                                <td>${index +1}</td>
-                                                                <td>${data.nama}</td>
-                                                                <td>${data.email}</td>
-                                                                <td>${data.role}</td>
-                                                                <td>${data.jenis_kelamin}</td>
-                                                                <td>${data.status_aktif}</td>
-                                                                <td>
-                                                                    <button data-id="${data.id}" id="btn-edit" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></button>
-                                                                    <button data-id="${data.id}" id="btn-hapus" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
-                                                                    <button data-id="${data.id}" id="btn-password" class="btn btn-warning btn-sm"><i class="fas fa-key"></i></i></button>
-                                                                    ${
-                                                                        data.role === 'user'?
-                                                                        `<a  id="btn-alamat" href="/user/alamat-user/${data.id}" class="btn btn-warning btn-sm"><i class="fas fa-address-card"></i></a>`
-                                                                        :''
-                                                                    }
-                                                                </td>
-                                                            </tr>
-                                                            `);
+                                                                        <tr>
+                                                                            <td>${index +1}</td>
+                                                                            <td>${data.nama}</td>
+                                                                            <td>${data.email}</td>
+                                                                            <td>${data.role}</td>
+                                                                            <td>${data.jenis_kelamin}</td>
+                                                                            <td>${data.status_aktif}</td>
+                                                                            <td>
+                                                                                <button data-id="${data.id}" id="btn-edit" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></button>
+                                                                                <button data-id="${data.id}" id="btn-hapus" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                                                                                <button data-id="${data.id}" id="btn-password" class="btn btn-warning btn-sm"><i class="fas fa-key"></i></i></button>
+                                                                                ${
+                                                                                    data.role === 'user'?
+                                                                                    `<a  id="btn-alamat" href="/alamat-user/${data.id}" class="btn btn-warning btn-sm"><i class="fas fa-address-card"></i></a>`
+                                                                                    :''
+                                                                                }
+                                                                            </td>
+                                                                        </tr>
+                                                                        `);
                 })
             })
             //alamat user
@@ -322,39 +322,39 @@
                     dataType: 'json',
                     success: function(hasil) {
                         $(`#formEdit`).html(` 
-                                                        @csrf()
-                                                        <div class="modal-body">
-                                                            <div class="form-group">
-                                                                <label for="name">Nama</label>
-                                                                <input type="type" name="nama" id="name" class="form-control" value="${hasil.nama}">
-                                                                <input type="hidden" id="id" value="${hasil.id}">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="email">Email</label>
-                                                                <input type="email" name="email" value="${hasil.email}" id="email" class="form-control">
-                                                                <small id="error-email" class="text-danger">
+                                                                    @csrf()
+                                                                    <div class="modal-body">
+                                                                        <div class="form-group">
+                                                                            <label for="name">Nama</label>
+                                                                            <input type="type" name="nama" id="name" class="form-control" value="${hasil.nama}">
+                                                                            <input type="hidden" id="id" value="${hasil.id}">
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label for="email">Email</label>
+                                                                            <input type="email" name="email" value="${hasil.email}" id="email" class="form-control">
+                                                                            <small id="error-email" class="text-danger">
 
-                                                                </small>
-                                                            </div>
-                                                            <div class="form-group">
-                                                            <label for="jenis_kelamin">Jenis Kelamin</label>
-                                                            <select name="jenis_kelamin" id="jenis_kelamin" class="custom-select">
-                                                                <option ${hasil.jenis_kelamin =='laki-laki' ? 'selected':''} value="laki-laki">Laki-laki</option>
-                                                                <option ${hasil.jenis_kelamin =='perempuan'?'selected':''} value="perempuan">Perempuan</option>
-                                                            </select>
-                                                        </div>
-                                                            <div class="form-group">
-                                                                <label for="status_aktif">Status Aktif</label>
-                                                                <select name="status_aktif" name="status_aktif" id="status_aktif" class="form-control">
-                                                                    <option ${hasil.status_aktif === 'aktif'?'selected':''} value="aktif">Aktif</option>
-                                                                    <option ${hasil.status_aktif === 'tidak'?'selected':''} value="tidak">Tidak</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                            <button type="submit" class="btn btn-primary">Edit</button>
-                                                        </div>`);
+                                                                            </small>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                        <label for="jenis_kelamin">Jenis Kelamin</label>
+                                                                        <select name="jenis_kelamin" id="jenis_kelamin" class="custom-select">
+                                                                            <option ${hasil.jenis_kelamin =='laki-laki' ? 'selected':''} value="laki-laki">Laki-laki</option>
+                                                                            <option ${hasil.jenis_kelamin =='perempuan'?'selected':''} value="perempuan">Perempuan</option>
+                                                                        </select>
+                                                                    </div>
+                                                                        <div class="form-group">
+                                                                            <label for="status_aktif">Status Aktif</label>
+                                                                            <select name="status_aktif" name="status_aktif" id="status_aktif" class="form-control">
+                                                                                <option ${hasil.status_aktif === 'aktif'?'selected':''} value="aktif">Aktif</option>
+                                                                                <option ${hasil.status_aktif === 'tidak'?'selected':''} value="tidak">Tidak</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                        <button type="submit" class="btn btn-primary">Edit</button>
+                                                                    </div>`);
                         $('#modalEdit').modal('show');
                     }
                 })
@@ -393,17 +393,17 @@
             $(document).on('click', '#btn-password', function() {
                 const id = $(this).data('id');
                 $('#form-ganti-password').html(`@csrf()
-                                                        <div class="modal-body">
-                                                            <div class="form-group">
-                                                                <label for="password">Password</label>
-                                                                <input type="type" name="password" id="password" class="form-control">
-                                                                <input type="hidden" id="id" name="id" class="form-control" value="${id}">
-                                                            </div>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                            <button type="submit" class="btn btn-primary">Edit</button>
-                                                        </div>`);
+                                                                    <div class="modal-body">
+                                                                        <div class="form-group">
+                                                                            <label for="password">Password</label>
+                                                                            <input type="type" name="password" id="password" class="form-control">
+                                                                            <input type="hidden" id="id" name="id" class="form-control" value="${id}">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                        <button type="submit" class="btn btn-primary">Edit</button>
+                                                                    </div>`);
                 $('#modalGantiPassword').modal('show');
             })
             $(document).on('submit', '#form-ganti-password', function(e) {

@@ -11,6 +11,7 @@ class UserController extends Controller
 {
     public function index(Request $request)
     {
+
         $users = User::query();
         if ($request->query('findRole')) {
             $role  = $request->query('role');

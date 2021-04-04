@@ -1,48 +1,48 @@
 @extends('admin.layout')
-@section('title','Page User')
+@section('title', 'Page User')
 @section('content')
-<!-- Container Fluid-->
-<div class="container-fluid" id="container-wrapper">
+    <!-- Container Fluid-->
+    <div class="container-fluid" id="container-wrapper">
 
-    <div class="card mb-3">
-        <div class="card-header d-flex justify-content-between">
-            <h5>DATA ALAMAT {{strtoupper($nama_user->nama)}}</h5>
-            <div class="d-flex ">
-                <a href="/user" class="btn btn-success btn-sm">Back</a>
+        <div class="card mb-3">
+            <div class="card-header d-flex justify-content-between">
+                <h5>DATA ALAMAT {{ strtoupper($nama_user->nama) }}</h5>
+                <div class="d-flex ">
+                    <a href="/user" class="btn btn-success btn-sm">Back</a>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped table-hover" id="datatable">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Nama</th>
+                                <th>Kecamatan</th>
+                                <th>Kabupaten</th>
+                                <th>NO HP</th>
+                                <th>Kode Pos</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-user">
+                            @foreach ($alamat as $no => $dt)
+                                <tr>
+                                    <td>{{ $no + 1 }}</td>
+                                    <td>{{ $dt->nama_penerima }}</td>
+                                    <td>{{ $dt->kecamatan }}</td>
+                                    <td>{{ $dt->kabupaten }}</td>
+                                    <td>{{ $dt->nomer_hp }}</td>
+                                    <td>{{ $dt->kode_pos }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered table-striped table-hover" id="datatable">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Nama</th>
-                            <th>Kecamatan</th>
-                            <th>Kabupaten</th>
-                            <th>NO HP</th>
-                            <th>Kode Pos</th>
-                        </tr>
-                    </thead>
-                    <tbody id="table-user">
-                        @foreach($alamat as $no=>$dt)
-                        <tr>
-                            <td>{{$no+1}}</td>
-                            <td>{{$dt->nama_penerima}}</td>
-                            <td>{{$dt->kecamatan}}</td>
-                            <td>{{$dt->kabupaten}}</td>
-                            <td>{{$dt->nomer_hp}}</td>
-                            <td>{{$dt->kode_pos}}</td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-        </div>
+
+        <!---Container Fluid-->
     </div>
-
-    <!---Container Fluid-->
-</div>
 @stop
 
 <!-- Modal tambah -->
@@ -92,19 +92,20 @@
 </div>
 <!-- modal edit data -->
 @section('javascript')
-<script>
-    $(document).ready(function() {
-        //datatable
-        let table = $('#datatable').DataTable({
-            "paging": true,
-            "searching": true,
-            "ordering": true,
-            "info": true,
-            "autoWidth": false,
-            "responsive": true,
-            async: true
+    <script>
+        $(document).ready(function() {
+            //datatable
+            let table = $('#datatable').DataTable({
+                "paging": true,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+                async: true
+            })
         })
-    })
-</script>
+
+    </script>
 
 @stop

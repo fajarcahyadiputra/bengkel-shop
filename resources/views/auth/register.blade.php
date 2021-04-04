@@ -75,7 +75,8 @@
                                                     <label for="provinsi">Provinsi</label>
                                                     <select name="provinsi" id="provinsi" class="form-control">
                                                         @foreach ($provinsi as $prov)
-                                                            <option value="{{ $prov['province_id'] }}">
+                                                            <option
+                                                                value="{{ $prov['province_id'] }}-{{ $prov['province'] }}">
                                                                 {{ $prov['province'] }}</option>
                                                         @endforeach
                                                     </select>
@@ -87,7 +88,8 @@
                                                     <label for="kabupaten">Kabupaten/kota</label>
                                                     <select name="kabupaten" id="kabupaten" class="form-control">
                                                         @foreach ($kabupaten as $kab)
-                                                            <option value="{{ $kab['city_id'] }}">
+                                                            <option
+                                                                value="{{ $kab['city_id'] }}-{{ $kab['city_name'] }}">
                                                                 {{ $kab['city_name'] }}</option>
                                                         @endforeach
                                                     </select>
@@ -231,8 +233,8 @@
             })
             const result = await sendRequest.json();
             if (!result.errors) {
-                if (result) {
-                    console.log('success');
+                if (result == true) {
+                    // console.log(result);
                     Swal.fire(
                         'sukses...!',
                         'Anda Sukses Registrasi',

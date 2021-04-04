@@ -37,8 +37,8 @@ class RegisterController extends Controller
         $rule = [
             'nama' => 'required|string',
             'kecamatan' => 'required|string',
-            'kabupaten' => 'required|integer',
-            'provinsi' => 'required|integer',
+            'kabupaten' => 'required|string',
+            'provinsi' => 'required|string',
             'kode_pos' => 'required|integer',
             'nomer_hp' => 'required|string',
             'jenis_kelamin' => 'required|string',
@@ -61,6 +61,8 @@ class RegisterController extends Controller
             }
         }
         $data['password'] = Hash::make($request->input('password'));
+        $kab = explode('-', $data['kabupaten']);
+        $prov = explode('-', $data['provinsi']);
         DB::beginTransaction();
         try {
             $newUser = User::create([
@@ -74,15 +76,17 @@ class RegisterController extends Controller
             $newaddress = AlamatUser::create([
                 'users_id' => $newUser->id,
                 'kecamatan' => $data['kecamatan'],
-                'kabupaten' => $data['kabupaten'],
+                'kabupaten' => $kab[1],
+                'kab_id'    => $kab[0],
                 'kode_pos'  => $data['kode_pos'],
-                'provinsi'  => $data['provinsi'],
+                'provinsi'  => $prov[1],
+                'prov_id'  => $prov[0],
                 'nomer_hp'  => $data['nomer_hp']
             ]);
             DB::commit();
             auth()->attempt($request->only('email', 'password'));
             return response()->json(true);
-        } catch (\Throwable $th) {
+        } catch (\Exception $e) {
             DB::rollBack();
             return response()->json(false);
         }

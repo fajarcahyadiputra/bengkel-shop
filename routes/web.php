@@ -39,8 +39,8 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
   //endpoint barang
   Route::resource('/barang', 'BarangController');
   Route::get('/foto-barang/{barang_id}', 'FotoBarangController@index');
-  Route::post('/tambah-foto', 'FotoBarangController@store');
-  Route::delete('/hapus-foto/{id}', 'FotoBarangController@destroy');
+  Route::post('/barang/tambah-foto', 'FotoBarangController@store');
+  Route::delete('/barang/hapus-foto/{id}', 'FotoBarangController@destroy');
 
   //endpoint kategori barang
   Route::resource('/kategori', 'KategoriController');
@@ -56,5 +56,20 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
 Route::group(['namespace' => 'Users'], function () {
   // USER
   Route::get('/', "HomeController@index");
-  Route::get('/profil/{id}', "ProfilController@index");
+  Route::get('/profil/{id}', "ProfilController@index")->middleware('auth');
+  Route::get('/keranjang/{id}', "KeranjangController@index")->name('keranjang')->middleware('auth');
+  Route::get('/add-to-cart/{id}', "KeranjangController@addToCart")->middleware('addToCart');
+  Route::post('/add-qty', "KeranjangController@addQty")->name('add-qty')->middleware('auth');
+  Route::get('/hapus-barang/{id}', "KeranjangController@hapusBarang")->middleware('auth');
+  Route::post('/go-to-checkout', "KeranjangController@goToCheckout")->name('goCheckout');
+  Route::get('/proses-checkout', "CheckoutController@index")->middleware('auth');
+  Route::post('/push-transaksi', "CheckoutController@pushTransaksi")->name('pushTransaksi')->middleware('auth');
+  Route::post('/check-cost', "CheckoutController@checkCostRajaongkir")->name('checkCost')->middleware('auth');
+  //endpoint about
+  Route::get('/about', "AboutController@index");
 });
+Route::get('/detail-transaksi/{invoice}', "TransaksiController@detailTransaksi")->middleware('auth');
+Route::get('/index-detail-transaksi', "TransaksiController@indexDetailTransaksi")->middleware('auth');
+Route::post('/bukti-transfer', "TransaksiController@buktiTransfer")->name('buktitransfer')->middleware('auth');
+Route::get('/logout-user', 'LoginController@logoutUser')->name('logoutUser')->middleware('auth');
+Route::get('/search-product', 'BarangController@searchProduct');

@@ -18,7 +18,7 @@ class CreateDetailTransaksiTable extends Migration
             $table->foreignId('transaksi_id')->constrained('transaksi')->onDelete('cascade');
             $table->string('nama_barang');
             $table->integer('jumblah');
-            $table->decimal('harga');
+            $table->bigInteger('harga');
             $table->string('kondisi');
             $table->integer('berat');
             $table->timestamps();
